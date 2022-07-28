@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/raisimExample.dir/main.cpp.o  -o raisimExample  -Wl,-rpath,/home/sangmin/raisim_build/lib /home/sangmin/raisim_build/lib/libraisim.so -lpthread /home/sangmin/raisim_build/lib/libraisimPng.so /home/sangmin/raisim_build/lib/libraisimZ.so /home/sangmin/raisim_build/lib/libraisimODE.so /home/sangmin/raisim_build/lib/libraisimMine.so 

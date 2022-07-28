@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" ?>
+<robot name="box">
+
+    <!--
+      Material colors
+    -->
+
+    <!-- Basic colors -->
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+    </material>
+    <material name="blue">
+        <color rgba="0.0 0.0 0.8 1.0"/>
+    </material>
+    <material name="green">
+        <color rgba="0.0 0.8 0.0 1.0"/>
+    </material>
+    <material name="grey">
+        <color rgba="0.2 0.2 0.2 1.0"/>
+    </material>
+    <material name="light_grey">
+        <color rgba="0.4 0.4 0.4 1.0"/>
+    </material>
+    <material name="red">
+        <color rgba="0.8 0.0 0.0 1.0"/>
+    </material>
+    <material name="white">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+    </material>
+
+    <!-- Material for the visual primitives -->
+    <material name="anymal_material">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+
+    <!--
+      Base
+    -->
+
+    <!-- Base link -->
+    <link name="base">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.03"/>
+            <geometry>
+                <box size="0.4 0.4 0.03"/>
+            </geometry>
+        </visual>
+        <!-- Main Body -->
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0.015"/>
+            <geometry>
+                <box size="0.4 0.4 0.03"/>
+            </geometry>
+        </collision>
+    </link>
+    <!-- Fixed joint to add dummy inertia link -->
+    <joint name="base_to_base_inertia" type="fixed">
+        <parent link="base"/>
+        <child link="base_inertia"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+    <!-- Dummy inertia link, because KDL cannot have inertia on the base link -->
+    <link name="base_inertia">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value="1000000"/>
+            <inertia ixx="166666.6667" ixy="0" ixz="0" iyy="83408.33333" iyz="0" izz="83408.33333"/>
+        </inertial>
+    </link>
+    <!-- leftjoint -->
+    <joint name="LF_joint" type="fixed">
+        <parent link="base"/>
+        <child link="LF_wall"/>
+	<origin rpy="0 0 0" xyz="0 -0.185 0.23"/>
+    </joint>
+    <!--
+      Left-wall
+    -->
+    <link name="LF_wall">
+        <visual>
+            <origin rpy="0 0 0.0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.4 0.03 0.4"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.4 0.03 0.4"/>
+            </geometry>
+        </collision>
+    </link>
+    <!-- behindjoint -->
+    <joint name="bh_joint" type="fixed">
+        <parent link="base"/>
+        <child link="bh_wall"/>
+	<origin rpy="0 0 0" xyz="-0.185 0 0.23"/>
+    </joint>
+    <!--
+      behind-wall
+    -->
+    <link name="bh_wall">
+        <visual>
+            <origin rpy="0 0 0.0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.03 0.34 0.4"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.03 0.34 0.4"/>
+            </geometry>
+        </collision>
+    </link>
+    <!-- rightjoint -->
+    <joint name="R_joint" type="fixed">
+        <parent link="base"/>
+        <child link="R_wall"/>
+	<origin rpy="0 0 0" xyz="0 0.185 0.23"/>
+    </joint>
+    <!--
+      R-wall
+    -->
+    <link name="R_wall">
+        <visual>
+            <origin rpy="0 0 0.0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.4 0.03 0.4"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.4 0.03 0.4"/>
+            </geometry>
+        </collision>
+    </link>
+    <!-- frontjoint -->
+    <joint name="F_joint" type="fixed">
+        <parent link="base"/>
+        <child link="F_wall"/>
+	<origin rpy="0 0 0" xyz="0.185 0 0.23"/>
+    </joint>
+    <!--
+      F-wall
+    -->
+    <link name="F_wall">
+        <visual>
+            <origin rpy="0 0 0.0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.03 0.34 0.4"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.03 0.34 0.4"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>
+
